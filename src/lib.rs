@@ -30,7 +30,11 @@ impl Wordle {
             if guess == answer {
                 return Some(i);
             }
-            assert!(self.dictionary.contains(&*guess), "Guess '{}' is not in the dictionary", guess);
+            assert!(
+                self.dictionary.contains(&*guess),
+                "Guess '{}' is not in the dictionary",
+                guess
+            );
             let correctness = Correctness::compute(answer, &guess);
             history.push(Guess {
                 word: guess,
@@ -122,7 +126,7 @@ macro_rules! guesser {
 #[cfg(test)]
 mod tests {
     mod game {
-        use crate::{ Guess, Wordle };
+        use crate::{Guess, Wordle};
 
         #[test]
         fn genius() {
@@ -134,7 +138,7 @@ mod tests {
         #[test]
         fn magnificent() {
             let w = Wordle::new();
-            let guesser = guesser!(|history| { 
+            let guesser = guesser!(|history| {
                 if history.len() == 1 {
                     return "right".to_string();
                 }
@@ -146,7 +150,7 @@ mod tests {
         #[test]
         fn impressive() {
             let w = Wordle::new();
-            let guesser = guesser!(|history| { 
+            let guesser = guesser!(|history| {
                 if history.len() == 2 {
                     return "right".to_string();
                 }
@@ -158,7 +162,7 @@ mod tests {
         #[test]
         fn splendid() {
             let w = Wordle::new();
-            let guesser = guesser!(|history| { 
+            let guesser = guesser!(|history| {
                 if history.len() == 3 {
                     return "right".to_string();
                 }
@@ -170,7 +174,7 @@ mod tests {
         #[test]
         fn great() {
             let w = Wordle::new();
-            let guesser = guesser!(|history| { 
+            let guesser = guesser!(|history| {
                 if history.len() == 4 {
                     return "right".to_string();
                 }
@@ -182,7 +186,7 @@ mod tests {
         #[test]
         fn phew() {
             let w = Wordle::new();
-            let guesser = guesser!(|history| { 
+            let guesser = guesser!(|history| {
                 if history.len() == 5 {
                     return "right".to_string();
                 }
